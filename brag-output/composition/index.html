@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "Noto Sans Tamil"; src: url("assets/fonts/NotoSansTamil_600SemiBold.ttf"); font-weight: 600; }
+      @font-face { font-family: "Noto Sans Tamil"; src: url("assets/fonts/NotoSansTamil_700Bold.ttf"); font-weight: 700; }
+      @font-face { font-family: "Noto Sans Devanagari"; src: url("assets/fonts/NotoSansDevanagari_600SemiBold.ttf"); font-weight: 600; }
+      @font-face { font-family: "Noto Sans Devanagari"; src: url("assets/fonts/NotoSansDevanagari_700Bold.ttf"); font-weight: 700; }
+
+      :root {
+        --ink: #111827; --muted: #6b7280; --line: #e5e7eb; --surface: #f9fafb;
+        --brand: #16a34a; --brand-dark: #15803d; --green-50: #f0fdf4; --green-100: #dcfce7; --green-200: #bbf7d0;
+        --amber-100: #fef3c7; --amber-800: #92400e; --red-100: #fee2e2; --red-700: #b91c1c;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #ffffff; }
+      #root {
+        position: relative; width: 1920px; height: 1080px; overflow: hidden; color: var(--ink);
+        font-family: "Inter", "Noto Sans Tamil", "Noto Sans Devanagari", system-ui, sans-serif;
+        font-feature-settings: "cv05", "cv08";
+      }
+      .clip { position: absolute; inset: 0; }
+      .ta { font-family: "Noto Sans Tamil", "Inter", sans-serif; }
+      .hi { font-family: "Noto Sans Devanagari", "Inter", sans-serif; }
+      .caps { font-size: 22px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+      svg.icon { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+
+      /* ---------- Scene 1: the discharge page ---------- */
+      #s1 { background: var(--surface); z-index: 1; }
+      #s1 .cam { position: absolute; left: 410px; top: 90px; width: 1100px; transform-origin: 50% 50%; }
+      #s1 .sheet {
+        background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 64px 72px 72px;
+        box-shadow: 0 30px 80px rgba(17, 24, 39, 0.08), 0 2px 6px rgba(17, 24, 39, 0.04);
+      }
+      #s1 .hosp { font-size: 22px; font-weight: 700; letter-spacing: 0.08em; color: var(--muted); }
+      #s1 h1 { font-size: 46px; font-weight: 700; letter-spacing: -0.02em; margin-top: 10px; }
+      #s1 .meta { font-size: 24px; color: var(--muted); margin-top: 10px; }
+      #s1 hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0 30px; }
+      #s1 .sub { font-size: 26px; font-weight: 600; margin-bottom: 14px; }
+      #s1 .med { position: relative; isolation: isolate; font-size: 27px; line-height: 1.95; color: var(--ink); white-space: nowrap; }
+      #s1 .med .hl { position: absolute; left: -12px; right: -12px; top: 6px; bottom: 6px; border-radius: 10px; background: var(--green-200); transform-origin: 0 50%; z-index: 0; }
+      #s1 .med span.t { position: relative; z-index: 1; }
+
+      /* ---------- Scene 2: the plan card ---------- */
+      #s2 { background: #fff; z-index: 2; }
+      #s2 .card {
+        position: absolute; left: 330px; top: 190px; width: 1260px; padding: 60px 68px 64px;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 28px;
+        box-shadow: 0 30px 70px rgba(17, 24, 39, 0.07);
+      }
+      .chiprow { display: flex; align-items: center; gap: 18px; }
+      .chip { width: 60px; height: 60px; border-radius: 999px; display: flex; align-items: center; justify-content: center; background: var(--green-100); color: #15803d; }
+      #s2 .title { font-size: 96px; font-weight: 700; letter-spacing: -0.03em; margin-top: 30px; line-height: 1.05; }
+      #s2 .metaline { font-size: 36px; color: var(--muted); margin-top: 18px; }
+      #s2 .divider { height: 1px; background: var(--line); margin: 44px 0 34px; }
+      #s2 .quote { position: relative; display: inline-block; font-size: 34px; color: var(--muted); margin-top: 14px; line-height: 1.4; }
+      #s2 .quote .ul { position: absolute; left: 0; right: 0; bottom: -8px; height: 4px; border-radius: 4px; background: var(--brand); transform-origin: 0 50%; }
+
+      /* ---------- Scene 3: doctor approves ---------- */
+      #s3 { background: var(--surface); z-index: 3; }
+      #s3 .sheet {
+        position: absolute; left: 330px; top: 110px; width: 1260px; padding: 52px 60px 56px; background: #fff;
+        border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 30px 70px rgba(17, 24, 39, 0.07);
+      }
+      #s3 .head { display: flex; align-items: center; justify-content: space-between; }
+      #s3 .who { display: flex; align-items: center; gap: 20px; }
+      #s3 .name { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; }
+      #s3 .spec { font-size: 26px; color: var(--muted); margin-top: 4px; }
+      .badge { position: absolute; right: 0; top: 50%; transform: translateY(-50%); white-space: nowrap; font-size: 26px; font-weight: 600; padding: 10px 24px; border-radius: 999px; }
+      #s3 .badges { position: relative; width: 300px; height: 60px; }
+      #s3 .b-wait { background: var(--amber-100); color: var(--amber-800); }
+      #s3 .b-ok { background: var(--green-100); color: #15803d; }
+      #s3 .rows { margin-top: 38px; border-top: 1px solid var(--line); }
+      #s3 .row { display: flex; justify-content: space-between; align-items: center; font-size: 30px; padding: 20px 22px; border-bottom: 1px solid var(--line); }
+      #s3 .row b { font-weight: 600; }
+      #s3 .row span { color: var(--muted); }
+      #s3 .row.focus { background: var(--green-50); border-radius: 14px; border-bottom-color: transparent; }
+      #s3 .btn { position: relative; margin-top: 40px; height: 104px; border-radius: 999px; background: var(--brand-dark); color: #fff; font-size: 34px; font-weight: 600; transform-origin: 50% 50%; }
+      #s3 .btn > div { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 14px; }
+      #s3 .cursor { position: absolute; left: 0; top: 0; width: 46px; height: 46px; z-index: 5; }
+
+      /* ---------- Scene 4: reminder in three scripts + family ---------- */
+      #s4 { background: var(--surface); z-index: 4; }
+      #s4 .langs { position: absolute; left: 150px; top: 330px; }
+      #s4 .lang { position: relative; font-size: 76px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.5; color: rgb(143, 145, 149); }
+      #s4 .lang .on { position: absolute; left: 0; top: 0; color: var(--ink); }
+      #s4 .lang .dot { position: absolute; left: -48px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 999px; background: var(--brand); }
+      .phone { position: absolute; top: 90px; width: 540px; height: 900px; border-radius: 68px; background: #111827; padding: 14px; box-shadow: 0 40px 90px rgba(17, 24, 39, 0.18); }
+      .phone .screen { position: relative; width: 100%; height: 100%; border-radius: 56px; overflow: hidden; background: #fff; }
+      #p1 { left: 800px; }
+      #p1 .screen { padding: 86px 30px 30px; }
+      #p1 .h { position: relative; height: 56px; font-size: 40px; font-weight: 700; letter-spacing: -0.01em; }
+      #p1 .today { position: relative; height: 34px; margin-top: 8px; font-size: 24px; font-weight: 600; color: var(--muted); }
+      .stack > * { position: absolute; left: 0; top: 0; white-space: nowrap; }
+      #p1 .rcard { margin-top: 22px; padding: 30px 28px 32px; border-radius: 30px; background: var(--surface); border: 1px solid var(--line); }
+      #p1 .slot { position: relative; height: 34px; font-size: 24px; color: var(--muted); font-weight: 600; }
+      #p1 .drug { position: relative; display: inline-block; margin-top: 16px; font-size: 42px; font-weight: 700; letter-spacing: -0.02em; }
+      #p1 .drug .ul { position: absolute; left: 0; right: 0; bottom: -6px; height: 5px; border-radius: 5px; background: var(--brand); transform-origin: 0 50%; }
+      #p1 .food { position: relative; height: 40px; margin-top: 18px; font-size: 27px; color: var(--ink); }
+      #p1 .pills { position: relative; height: 44px; margin-top: 26px; }
+      #p1 .pill { font-size: 22px; font-weight: 600; padding: 7px 18px; border-radius: 999px; }
+      #p1 .p-wait { background: #f3f4f6; color: #4b5563; }
+      #p1 .p-miss { background: var(--red-100); color: var(--red-700); }
+      #p1 .done { margin-top: 30px; padding: 24px 28px 26px; border-radius: 30px; background: #fff; border: 1px solid var(--line); }
+      #p1 .done .slot { height: 32px; font-size: 22px; }
+      #p1 .done .dn { margin-top: 10px; font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: #374151; }
+      #p1 .done .food { height: 34px; margin-top: 10px; font-size: 24px; color: var(--muted); }
+      #p1 .done .pills { margin-top: 16px; }
+      #p1 .p-ok { background: var(--green-100); color: #15803d; }
+      #p2 { left: 1400px; }
+      #p2 .screen { background: linear-gradient(180deg, #1f2937 0%, #111827 100%); }
+      #p2 .clock { position: absolute; left: 0; right: 0; top: 120px; text-align: center; color: #fff; font-size: 104px; font-weight: 600; letter-spacing: -0.03em; }
+      #p2 .note { position: absolute; left: 20px; right: 20px; top: 330px; padding: 24px 24px 26px; border-radius: 30px; background: rgba(255, 255, 255, 0.96); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25); }
+      #p2 .app { display: flex; align-items: center; gap: 12px; font-size: 20px; color: #4b5563; font-weight: 600; }
+      #p2 .appicon { width: 38px; height: 38px; border-radius: 10px; background: var(--brand-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
+      #p2 .nt { margin-top: 14px; font-size: 27px; font-weight: 700; }
+      #p2 .nb { margin-top: 6px; font-size: 24px; line-height: 1.35; color: #1f2937; }
+
+      /* ---------- Scene 0: intro (the app's dark splash) ---------- */
+      #s0 { background: linear-gradient(180deg, #000000 0%, #111827 100%); z-index: 0; }
+      #s0 .in { position: absolute; left: 0; right: 0; top: 330px; display: flex; flex-direction: column; align-items: center; }
+      #s0 .row0 { display: flex; align-items: center; gap: 26px; }
+      #s0 .row0 svg { color: #fff; }
+      #s0 .w0 { font-size: 120px; font-weight: 700; letter-spacing: -0.03em; color: #fff; }
+      #s0 .sub0 { margin-top: 26px; display: flex; align-items: center; gap: 16px; font-size: 38px; color: rgba(255, 255, 255, 0.78); }
+      #s0 .sub0 i { width: 14px; height: 14px; border-radius: 999px; background: var(--brand); }
+
+      /* ---------- Scene 6: provider map ---------- */
+      #s6 { background: var(--surface); z-index: 5; }
+      #s6 .side { position: absolute; left: 190px; top: 360px; width: 760px; }
+      #s6 .q { font-size: 64px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+      #s6 .fromplan { margin-top: 26px; display: flex; align-items: center; gap: 16px; font-size: 30px; color: var(--muted); }
+      #s6 .fromplan b { color: #15803d; background: var(--green-100); border-radius: 999px; padding: 8px 22px; font-weight: 600; font-size: 28px; }
+      #p3 { left: 1130px; }
+      #p3 .screen { background: #eef2ee; }
+      #p3 .top { position: absolute; left: 0; right: 0; top: 0; height: 150px; background: #fff; border-bottom: 1px solid var(--line); padding: 62px 26px 0; z-index: 3; }
+      #p3 .mt { font-size: 32px; font-weight: 700; letter-spacing: -0.01em; }
+      #p3 .chips { position: absolute; left: 26px; top: 168px; display: flex; gap: 10px; z-index: 3; }
+      #p3 .c { position: relative; font-size: 21px; font-weight: 600; padding: 8px 18px; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: var(--ink); box-shadow: 0 2px 6px rgba(17,24,39,.06); }
+      #p3 .c .on { position: absolute; inset: -1px; border-radius: 999px; background: var(--brand-dark); color: #fff; display: flex; align-items: center; justify-content: center; }
+      #p3 .road { position: absolute; inset: 0; }
+      #p3 .sea { position: absolute; right: 0; top: 0; bottom: 0; width: 40px; background: #dbeafe; }
+      #p3 .pin { position: absolute; display: block; border-radius: 999px; transform: translate(-50%, -50%); }
+      #p3 .pd { width: 15px; height: 15px; background: #16a34a; border: 2px solid #fff; }
+      #p3 .ph { width: 19px; height: 19px; background: #475569; border: 2px solid #fff; }
+      #p3 .pl { width: 15px; height: 15px; background: #fff; border: 3px solid #0f766e; }
+      #p3 .named { width: 30px; height: 30px; background: #15803d; border: 4px solid #fff; box-shadow: 0 0 0 6px rgba(22,163,74,.25); }
+      #p3 .sheet3 { position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 26px 30px; background: #fff; border-radius: 34px 34px 0 0; box-shadow: 0 -10px 30px rgba(17,24,39,.12); z-index: 4; }
+      #p3 .grab { width: 60px; height: 6px; border-radius: 6px; background: var(--line); margin: 0 auto 18px; }
+      #p3 .pn { font-size: 29px; font-weight: 700; letter-spacing: -0.01em; }
+      #p3 .pm { margin-top: 6px; font-size: 21px; color: var(--muted); }
+      #p3 .tag3 { margin-top: 10px; font-size: 20px; color: #15803d; font-weight: 600; }
+      #p3 .btns { margin-top: 18px; display: flex; gap: 12px; }
+      #p3 .btns div { flex: 1; text-align: center; font-size: 22px; font-weight: 600; padding: 14px 0; border-radius: 999px; }
+      #p3 .b1 { background: var(--surface); border: 1px solid var(--line); }
+      #p3 .b2 { background: var(--brand-dark); color: #fff; }
+      #p3 .disc { margin-top: 16px; text-align: center; font-size: 19px; color: var(--muted); }
+
+      /* ---------- Scene 5: logo ---------- */
+      #s5 { background: linear-gradient(180deg, #000000 0%, #111827 100%); z-index: 6; }
+      #s5 .stack5 { position: absolute; left: 0; right: 0; top: 300px; display: flex; flex-direction: column; align-items: center; }
+      #s5 .mark { position: relative; width: 190px; height: 190px; }
+      #s5 .mark > * { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; }
+      #s5 .glow { position: absolute; left: 50%; top: 50%; width: 520px; height: 520px; margin: -260px 0 0 -260px; border-radius: 999px; background: radial-gradient(circle, rgba(22, 163, 74, 0.28) 0%, rgba(22, 163, 74, 0) 65%); }
+      #s5 .word { margin-top: 36px; font-size: 132px; font-weight: 700; letter-spacing: -0.03em; color: #fff; }
+      #s5 .tag { margin-top: 18px; display: flex; align-items: center; gap: 16px; font-size: 36px; color: rgba(255, 255, 255, 0.75); }
+      #s5 .tag i { width: 14px; height: 14px; border-radius: 999px; background: var(--brand); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25" data-width="1920" data-height="1080">
+
+      <!-- Scene 0 — intro: the app's own dark splash and its welcome line -->
+      <div id="s0" class="clip" data-start="0" data-duration="2.5" data-track-index="0">
+        <div class="in">
+          <div class="row0"><svg class="icon" width="120" height="120" viewBox="0 0 24 24" stroke-width="1.4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /></svg><div class="w0">CareBridge</div></div>
+          <div class="sub0"><i></i>Your discharge follow-up, step by step</div>
+        </div>
+      </div>
+
+      <!-- Scene 1 — the discharge page (synthetic test document from the project) -->
+      <div id="s1" class="clip" data-start="2.1" data-duration="2.0" data-track-index="0">
+        <div class="cam">
+          <div class="sheet">
+            <div class="hosp">SUNDARA BAY MEDICAL CENTRE</div>
+            <h1>Discharge Summary</h1>
+            <div class="meta">Murugan Selvam · P1001 · Discharged 08-10-2026</div>
+            <hr />
+            <div class="sub">Discharge Medications:</div>
+            <div class="med dim">1. Tab. Aspirin 75 mg — once daily after lunch at 1:00 PM</div>
+            <div class="med" id="m2"><div class="hl"></div><span class="t">2. Tab. Clopidogrel 75 mg — once daily after breakfast at 8:00 AM</span></div>
+            <div class="med dim">3. Tab. Atorvastatin 40 mg — once daily at night at 9:00 PM</div>
+            <div class="med dim">4. Tab. Metoprolol 25 mg — twice daily at 8:00 AM and 8:00 PM</div>
+            <div class="med dim">5. Tab. Pantoprazole 40 mg — once daily before breakfast at 7:00 AM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 2 — the plan card with its source line -->
+      <div id="s2" class="clip" data-start="3.7" data-duration="3.4" data-track-index="0">
+        <div class="card">
+          <div class="chiprow s2a">
+            <div class="chip"><svg class="icon" width="32" height="32" viewBox="0 0 24 24" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" /><path d="m8.5 8.5 7 7" /></svg></div>
+            <div class="caps">Medicines</div>
+          </div>
+          <div class="title s2b">Clopidogrel 75 mg</div>
+          <div class="metaline s2c">Once daily · 8:00 AM · after breakfast</div>
+          <div class="divider s2d"></div>
+          <div class="s2d">
+            <div class="caps" style="font-size: 20px">Source line</div>
+            <div class="quote">“Tab. Clopidogrel 75 mg — once daily after breakfast at 8:00 AM”<div class="ul"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 3 — the doctor approves -->
+      <div id="s3" class="clip" data-start="6.7" data-duration="3.3" data-track-index="0">
+        <div class="sheet">
+          <div class="head">
+            <div class="who">
+              <div class="chip"><svg class="icon" width="30" height="30" viewBox="0 0 24 24" stroke-width="2"><path d="M11 2v2" /><path d="M5 2v2" /><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1" /><path d="M8 15a6 6 0 0 0 12 0v-3" /><circle cx="20" cy="10" r="2" /></svg></div>
+              <div><div class="name">Dr. Lakshmi Narayanan</div><div class="spec">Cardiology · Murugan Selvam</div></div>
+            </div>
+            <div class="badges" data-layout-allow-overlap><div class="badge b-wait">Awaiting approval</div><div class="badge b-ok">Approved</div></div>
+          </div>
+          <div class="rows">
+            <div class="row"><b>Aspirin 75 mg</b><span>1:00 PM</span></div>
+            <div class="row focus"><b>Clopidogrel 75 mg</b><span>8:00 AM</span></div>
+            <div class="row"><b>Atorvastatin 40 mg</b><span>9:00 PM</span></div>
+            <div class="row"><b>Metoprolol 25 mg</b><span>8:00 AM · 8:00 PM</span></div>
+            <div class="row" style="border-bottom: 0"><b>Pantoprazole 40 mg</b><span>7:00 AM</span></div>
+          </div>
+          <div class="btn">
+            <div class="btn-a">Approve Plan</div>
+            <div class="btn-b"><svg class="icon" width="36" height="36" viewBox="0 0 24 24" stroke-width="2.5"><path d="M20 6 9 17l-5-5" /></svg>Plan approved</div>
+          </div>
+        </div>
+        <svg class="cursor" viewBox="0 0 24 24"><path d="M4 2l15 9.5-6.6 1.4L16 20.2l-2.9 1.3-3.5-7.3L4 18.6z" fill="#111827" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round" /></svg>
+      </div>
+
+      <!-- Scene 4 — the reminder in three scripts, then the family push -->
+      <div id="s4" class="clip" data-start="9.6" data-duration="6.9" data-track-index="0">
+        <div class="langs">
+          <div class="lang" id="l-en">English<div class="on">English</div><div class="dot"></div></div>
+          <div class="lang ta" id="l-ta">தமிழ்<div class="on">தமிழ்</div><div class="dot"></div></div>
+          <div class="lang hi" id="l-hi">हिन्दी<div class="on">हिन्दी</div><div class="dot"></div></div>
+        </div>
+
+        <div class="phone" id="p1"><div class="screen">
+          <div class="h stack" data-layout-allow-overlap><div class="en">Reminders</div><div class="ta">நினைவூட்டல்கள்</div><div class="hi">रिमाइंडर</div></div>
+          <div class="today stack" data-layout-allow-overlap><div class="en">Today</div><div class="ta">இன்று</div><div class="hi">आज</div></div>
+          <div class="done">
+            <div class="slot stack" data-layout-allow-overlap><div class="en">Morning dose · 7:00 AM</div><div class="ta">காலை மருந்து · 7:00 AM</div><div class="hi">सुबह की खुराक · 7:00 AM</div></div>
+            <div class="dn">Pantoprazole 40 mg</div>
+            <div class="food stack" data-layout-allow-overlap><div class="en">before breakfast</div><div class="ta">காலை உணவுக்கு முன்</div><div class="hi">नाश्ते से पहले</div></div>
+            <div class="pills stack" data-layout-allow-overlap><div class="pill p-ok en">Completed</div><div class="pill p-ok ta">முடிந்தது</div><div class="pill p-ok hi">पूरा हुआ</div></div>
+          </div>
+          <div class="rcard">
+            <div class="slot stack" data-layout-allow-overlap><div class="en">Morning dose · 8:00 AM</div><div class="ta">காலை மருந்து · 8:00 AM</div><div class="hi">सुबह की खुराक · 8:00 AM</div></div>
+            <div class="drug">Clopidogrel 75 mg<div class="ul"></div></div>
+            <div class="food stack" data-layout-allow-overlap><div class="en">after breakfast</div><div class="ta">காலை உணவுக்குப் பின்</div><div class="hi">नाश्ते के बाद</div></div>
+            <div class="pills stack" data-layout-allow-overlap>
+              <div class="pill p-wait en">Pending</div><div class="pill p-wait ta">நிலுவையில்</div><div class="pill p-wait hi">बाकी</div>
+              <div class="pill p-miss hi miss">छूट गया</div>
+            </div>
+          </div>
+        </div></div>
+
+        <div class="phone" id="p2"><div class="screen">
+          <div class="clock">12:05</div>
+          <div class="note">
+            <div class="app"><div class="appicon"><svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg></div>CareBridge · now</div>
+            <div class="nt">Missed dose · Murugan Selvam</div>
+            <div class="nb">Morning dose of Clopidogrel 75 mg (8:00 AM) not marked.</div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Scene 6 — provider map, filtered by the plan's specialty (synthetic provider seed data) -->
+      <div id="s6" class="clip" data-start="16.1" data-duration="3.9" data-track-index="0">
+        <div class="side">
+          <div class="q">Cardiology care,<br />close to home</div>
+          <div class="fromplan">Specialty from the plan <b>Cardiology</b></div>
+        </div>
+        <div class="phone" id="p3"><div class="screen">
+          <div class="top"><div class="mt">Map</div></div>
+          <svg class="road" viewBox="0 0 512 872" preserveAspectRatio="none" data-layout-allow-overflow>
+            <g fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round">
+              <path d="M-10 330 C 120 360, 260 340, 520 390" /><path d="M140 160 C 170 380, 200 600, 260 880" />
+              <path d="M-10 640 C 160 600, 330 640, 520 560" /><path d="M360 160 C 330 400, 380 650, 420 880" />
+            </g>
+            <g fill="none" stroke="#dfe6df" stroke-width="3"><path d="M-10 480 L 520 470" /><path d="M60 160 L 90 880" /><path d="M-10 780 C 200 760, 360 800, 520 720" /></g>
+          </svg>
+          <div class="sea"></div>
+          <i class="pin pd cardio" style="left:289.3px;top:230.5px"></i>
+            <i class="pin pd other" style="left:354.9px;top:382.1px"></i>
+            <i class="pin pd other" style="left:407.3px;top:516.8px"></i>
+            <i class="pin pd other" style="left:315.6px;top:584.2px"></i>
+            <i class="pin pd other" style="left:420.4px;top:264.2px"></i>
+            <i class="pin pd other" style="left:381.1px;top:331.6px"></i>
+            <i class="pin pd other" style="left:446.7px;top:398.9px"></i>
+            <i class="pin pd other" style="left:145.1px;top:398.9px"></i>
+            <i class="pin pd other" style="left:118.9px;top:685.3px"></i>
+            <i class="pin pd other" style="left:79.6px;top:769.5px"></i>
+            <i class="pin pd other" style="left:394.2px;top:533.7px"></i>
+            <i class="pin pd other" style="left:276.2px;top:247.4px"></i>
+            <i class="pin ph cardio named" style="left:289.3px;top:247.4px"></i>
+            <i class="pin ph other" style="left:302.4px;top:247.4px"></i>
+            <i class="pin ph other" style="left:276.2px;top:230.5px"></i>
+            <i class="pin ph other" style="left:302.4px;top:230.5px"></i>
+            <i class="pin ph other" style="left:276.2px;top:213.7px"></i>
+            <i class="pin ph other" style="left:289.3px;top:213.7px"></i>
+            <i class="pin ph other" style="left:302.4px;top:213.7px"></i>
+            <i class="pin ph other" style="left:263.1px;top:264.2px"></i>
+            <i class="pin ph other" style="left:276.2px;top:264.2px"></i>
+            <i class="pin ph cardio" style="left:341.8px;top:398.9px"></i>
+            <i class="pin ph other" style="left:354.9px;top:398.9px"></i>
+            <i class="pin ph other" style="left:368.0px;top:398.9px"></i>
+            <i class="pin ph other" style="left:341.8px;top:382.1px"></i>
+            <i class="pin ph other" style="left:368.0px;top:382.1px"></i>
+            <i class="pin ph other" style="left:341.8px;top:365.3px"></i>
+            <i class="pin ph other" style="left:354.9px;top:365.3px"></i>
+            <i class="pin ph other" style="left:368.0px;top:365.3px"></i>
+            <i class="pin ph other" style="left:328.7px;top:415.8px"></i>
+            <i class="pin ph other" style="left:407.3px;top:533.7px"></i>
+            <i class="pin ph other" style="left:420.4px;top:533.7px"></i>
+            <i class="pin ph other" style="left:394.2px;top:516.8px"></i>
+            <i class="pin ph other" style="left:420.4px;top:516.8px"></i>
+            <i class="pin ph other" style="left:394.2px;top:500.0px"></i>
+            <i class="pin ph cardio" style="left:407.3px;top:500.0px"></i>
+            <i class="pin ph other" style="left:420.4px;top:500.0px"></i>
+            <i class="pin ph other" style="left:381.1px;top:550.5px"></i>
+            <i class="pin ph other" style="left:394.2px;top:550.5px"></i>
+            <i class="pin ph other" style="left:302.4px;top:601.1px"></i>
+            <i class="pin ph other" style="left:315.6px;top:601.1px"></i>
+            <i class="pin ph other" style="left:328.7px;top:601.1px"></i>
+            <i class="pin ph other" style="left:302.4px;top:584.2px"></i>
+            <i class="pin ph cardio" style="left:328.7px;top:584.2px"></i>
+            <i class="pin ph other" style="left:302.4px;top:567.4px"></i>
+            <i class="pin ph other" style="left:315.6px;top:567.4px"></i>
+            <i class="pin ph other" style="left:328.7px;top:567.4px"></i>
+            <i class="pin ph other" style="left:289.3px;top:617.9px"></i>
+            <i class="pin ph cardio" style="left:66.4px;top:786.3px"></i>
+            <i class="pin ph other" style="left:79.6px;top:786.3px"></i>
+            <i class="pin ph other" style="left:92.7px;top:786.3px"></i>
+            <i class="pin ph other" style="left:66.4px;top:769.5px"></i>
+            <i class="pin ph other" style="left:92.7px;top:769.5px"></i>
+            <i class="pin ph other" style="left:66.4px;top:752.6px"></i>
+            <i class="pin ph other" style="left:79.6px;top:752.6px"></i>
+            <i class="pin ph other" style="left:92.7px;top:752.6px"></i>
+            <i class="pin ph other" style="left:53.3px;top:803.2px"></i>
+            <i class="pin ph other" style="left:132.0px;top:415.8px"></i>
+            <i class="pin ph other" style="left:145.1px;top:415.8px"></i>
+            <i class="pin ph other" style="left:158.2px;top:415.8px"></i>
+            <i class="pin ph other" style="left:132.0px;top:398.9px"></i>
+            <i class="pin ph other" style="left:158.2px;top:398.9px"></i>
+            <i class="pin ph cardio" style="left:132.0px;top:382.1px"></i>
+            <i class="pin ph other" style="left:145.1px;top:382.1px"></i>
+            <i class="pin ph other" style="left:158.2px;top:382.1px"></i>
+            <i class="pin pl other" style="left:105.8px;top:702.1px"></i>
+            <i class="pin pl other" style="left:407.3px;top:281.1px"></i>
+            <i class="pin pl other" style="left:368.0px;top:348.4px"></i>
+            <i class="pin pl other" style="left:433.6px;top:415.8px"></i>
+            <i class="pin pl other" style="left:302.4px;top:617.9px"></i>
+          <div class="chips" data-layout-allow-overlap>
+            <div class="c">All</div>
+            <div class="c">Cardiology<div class="on">Cardiology</div></div>
+            <div class="c">General Medicine</div>
+          </div>
+          <div class="sheet3">
+            <div class="grab"></div>
+            <div class="pn">Sundara Bay Medical Centre</div>
+            <div class="pm">Hospital · Cardiology</div>
+            <div class="tag3">Named in your summary</div>
+            <div class="btns"><div class="b1">Call</div><div class="b2">Open in Maps</div></div>
+            <div class="disc">Suggested location. Please confirm before visiting.</div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Scene 5 — the dark splash: pill becomes heart -->
+      <div id="s5" class="clip" data-start="19.6" data-duration="5.4" data-track-index="0">
+        <div class="stack5">
+          <div class="mark">
+            <div class="glow" data-layout-allow-overflow></div>
+            <div class="m-pill"><svg class="icon" width="170" height="170" viewBox="0 0 24 24" stroke-width="1.25"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" /><path d="m8.5 8.5 7 7" /></svg></div>
+            <div class="m-heart"><svg class="icon" width="150" height="150" viewBox="0 0 24 24" stroke-width="1.25"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /></svg></div>
+          </div>
+          <div class="word">CareBridge</div>
+          <div class="tag"><i></i>From Discharge to Recovery</div>
+        </div>
+      </div>
+
+      <!-- Audio: music ducked under the voice, lifted for the logo -->
+      <audio id="music-a" data-start="0" data-duration="22.9" data-volume="0.14" data-fade-in="0.5" data-fade-out="0.3" data-track-index="1"
+        src="assets/music/happy-beats-business-moves-vol-11-by-ende-dot-app.mp3"></audio>
+      <audio id="music-b" data-start="22.6" data-duration="2.4" data-media-start="22.6" data-volume="0.3" data-fade-in="0.3" data-fade-out="1.6" data-track-index="2"
+        src="assets/music/happy-beats-business-moves-vol-11-by-ende-dot-app.mp3"></audio>
+      <audio id="vo" data-start="0.6" data-duration="22" data-volume="1" data-track-index="3" src="assets/voiceover.wav"></audio>
+      <!-- SFX land with the visual they belong to -->
+      <audio id="sfx-intro" data-start="0.35" data-duration="0.18" data-volume="0.4" data-track-index="5" src="assets/sfx/impactSoft_medium_001.ogg"></audio>
+      <audio id="sfx-sweep" data-start="2.3" data-duration="0.6" data-volume="0.35" data-track-index="4" src="assets/sfx/card-slide-1.ogg"></audio>
+      <audio id="sfx-card" data-start="3.7" data-duration="0.18" data-volume="0.55" data-track-index="5" src="assets/sfx/impactSoft_medium_001.ogg"></audio>
+      <audio id="sfx-click" data-start="8.45" data-duration="0.06" data-volume="0.7" data-track-index="4" src="assets/sfx/click2.ogg"></audio>
+      <audio id="sfx-ok" data-start="8.96" data-duration="0.15" data-volume="0.5" data-track-index="5" src="assets/sfx/impactSoft_medium_004.ogg"></audio>
+      <audio id="sfx-ta" data-start="11.06" data-duration="0.6" data-volume="0.3" data-track-index="4" src="assets/sfx/switch_007.ogg"></audio>
+      <audio id="sfx-hi" data-start="12.12" data-duration="0.6" data-volume="0.3" data-track-index="5" src="assets/sfx/switch_007.ogg"></audio>
+      <audio id="sfx-push" data-start="14.22" data-duration="0.19" data-volume="0.45" data-track-index="4" src="assets/sfx/drop_002.ogg"></audio>
+      <audio id="sfx-chip" data-start="16.9" data-duration="0.06" data-volume="0.6" data-track-index="5" src="assets/sfx/click2.ogg"></audio>
+      <audio id="sfx-sheet" data-start="17.91" data-duration="0.6" data-volume="0.3" data-track-index="4" src="assets/sfx/card-slide-1.ogg"></audio>
+      <audio id="sfx-logo" data-start="19.9" data-duration="1.48" data-volume="0.22" data-track-index="5" src="assets/sfx/impactBell_heavy_000.ogg"></audio>
+    </div>
+
+    <script>
+      const E_OUT = "expo.out";      // confident arrivals
+      const E_IO = "power2.inOut";   // on-screen moves
+      const tl = gsap.timeline({ paused: true });
+
+      // ---------- Scene 0: intro (0 – 2.5) ----------
+      tl.fromTo("#s0 .row0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.8, ease: E_OUT }, 0.3);
+      tl.fromTo("#s0 .sub0", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: E_OUT }, 0.75);
+
+      // ---------- Scene 1: the page (2.1 – 4.1) ----------
+      tl.set("#m2 .hl", { scaleX: 0 }, 0);
+      tl.fromTo("#s1", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 2.1);
+      tl.fromTo("#s1 .cam", { scale: 1.03, y: 14 }, { scale: 1, y: 0, duration: 0.6, ease: E_OUT }, 2.1);
+      tl.to("#m2 .hl", { scaleX: 1, duration: 0.7, ease: "power2.out" }, 2.3);
+      tl.to("#s1 .dim, #s1 .hosp, #s1 h1, #s1 .meta, #s1 .sub", { opacity: 0.28, duration: 0.5, ease: E_IO }, 2.9);
+      tl.to("#s1 .cam", { scale: 1.5, y: -160, x: 70, duration: 1.0, ease: E_IO }, 3.1);
+
+      // ---------- Scene 2: plan card (3.7 – 7.1) ----------
+      tl.fromTo("#s2", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "none" }, 3.7);
+      tl.fromTo("#s2 .card", { y: 70, scale: 0.97, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, ease: E_OUT }, 3.7); // beat-locked: 3.70s
+      tl.fromTo("#s2 .s2a", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: E_OUT }, 3.95);
+      tl.fromTo("#s2 .s2b", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, ease: E_OUT }, 4.05);
+      tl.fromTo("#s2 .s2c", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: E_OUT }, 4.3);
+      tl.fromTo("#s2 .s2d", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: E_OUT }, 4.6);
+      tl.fromTo("#s2 .quote .ul", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power2.out" }, 5.0); // "keeps the line it came from"
+
+      // ---------- Scene 3: doctor approves (6.7 – 10.0) ----------
+      tl.fromTo("#s3", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "none" }, 6.7);
+      tl.fromTo("#s3 .sheet", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E_OUT }, 6.75);
+      tl.set("#s3 .b-ok, #s3 .btn-b", { opacity: 0 }, 6.7);
+      tl.fromTo("#s3 .cursor", { x: 1560, y: 1010, opacity: 0 }, { x: 1180, y: 940, opacity: 1, duration: 0.45, ease: E_OUT }, 7.35);
+      tl.to("#s3 .cursor", { x: 990, y: 912, duration: 0.6, ease: E_IO }, 7.75);
+      tl.to("#s3 .btn", { scale: 0.97, duration: 0.1, ease: "power2.out" }, 8.45);
+      tl.to("#s3 .cursor", { scale: 0.88, duration: 0.1, ease: "power2.out" }, 8.45);
+      tl.to("#s3 .btn", { scale: 1, duration: 0.3, ease: E_OUT }, 8.57);
+      tl.to("#s3 .cursor", { scale: 1, duration: 0.3, ease: E_OUT }, 8.57);
+      tl.to("#s3 .btn-a", { opacity: 0, duration: 0.2, ease: "none" }, 8.8);
+      tl.to("#s3 .btn-b", { opacity: 1, duration: 0.25, ease: "none" }, 8.9);
+      tl.to("#s3 .b-wait", { opacity: 0, duration: 0.25, ease: "none" }, 8.9);
+      tl.fromTo("#s3 .b-ok", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.45, ease: E_OUT }, 8.96); // beat-locked: 8.96s
+      tl.to("#s3 .cursor", { opacity: 0, x: 1060, y: 980, duration: 0.5, ease: E_IO }, 9.2);
+
+      // ---------- Scene 4: reminder in three scripts + family (9.6 – 16.5) ----------
+      tl.fromTo("#s4", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "none" }, 9.6);
+      tl.fromTo("#p1", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: E_OUT }, 9.65);
+      tl.fromTo("#s4 .langs", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: E_OUT }, 9.8);
+      tl.set("#p1 .ta, #p1 .hi, #p1 .miss, #l-ta .on, #l-hi .on, #l-ta .dot, #l-hi .dot", { opacity: 0 }, 9.6);
+      tl.set("#p2", { opacity: 0 }, 9.6);
+      tl.set("#p1 .drug .ul", { scaleX: 0 }, 9.6);
+      const swap = (from, to, at) => {
+        tl.to(`#p1 .${from}:not(.miss), #l-${from} .on, #l-${from} .dot`, { opacity: 0, duration: 0.22, ease: "none" }, at);
+        tl.fromTo(`#p1 .${to}:not(.miss)`, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: E_OUT }, at + 0.12);
+        tl.to(`#l-${to} .on, #l-${to} .dot`, { opacity: 1, duration: 0.3, ease: "none" }, at + 0.05);
+      };
+      swap("en", "ta", 11.06);  // beat-grid: 11.06s
+      swap("ta", "hi", 12.12);  // beat-grid: 12.12s
+      tl.to("#p1 .drug .ul", { scaleX: 1, duration: 0.8, ease: "power2.out" }, 12.65); // beat-locked: 12.65s, "the medicine name untouched"
+      tl.to("#s4 .langs", { opacity: 0, x: -40, duration: 0.45, ease: E_IO }, 13.7);
+      tl.to("#p1", { x: -420, duration: 0.7, ease: E_IO }, 13.75);
+      tl.to("#p1 .p-wait.hi", { opacity: 0, duration: 0.2, ease: "none" }, 13.95);
+      tl.to("#p1 .miss", { opacity: 1, duration: 0.3, ease: "none" }, 14.0);
+      tl.fromTo("#p2", { x: 160, opacity: 0 }, { x: -380, opacity: 1, duration: 0.7, ease: E_OUT }, 13.75);
+      tl.fromTo("#p2 .note", { y: -60, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: E_OUT }, 14.22); // beat-grid: 14.22s
+
+      // ---------- Scene 6: provider map (16.1 – 20.0) ----------
+      tl.fromTo("#s6", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "none" }, 16.1);
+      tl.fromTo("#p3", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: E_OUT }, 16.15);
+      tl.fromTo("#s6 .q", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: E_OUT }, 16.3);
+      tl.set("#p3 .c .on", { opacity: 0 }, 16.1);
+      tl.set("#p3 .sheet3", { y: 360 }, 16.1);
+      tl.fromTo("#s6 .fromplan", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: E_OUT }, 16.75);
+      tl.to("#p3 .c .on", { opacity: 1, duration: 0.2, ease: "none" }, 16.9);                         // chip: Cardiology
+      tl.to("#p3 .other", { opacity: 0.12, duration: 0.45, ease: E_IO }, 17.0);
+      tl.fromTo("#p3 .cardio", { scale: 0.6 }, { scale: 1.25, duration: 0.5, ease: E_OUT, stagger: 0.06 }, 17.05);
+      tl.to("#p3 .sheet3", { y: 0, duration: 0.6, ease: E_OUT }, 17.91);                             // beat-locked: 17.91s
+
+      // ---------- Scene 5: logo (19.6 – 25.0) ----------
+      tl.fromTo("#s5", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "none" }, 19.6);
+      tl.set("#s5 .m-heart, #s5 .word, #s5 .tag", { opacity: 0 }, 19.6);
+      tl.fromTo("#s5 .mark", { scale: 0.92, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: E_OUT }, 19.6);
+      tl.to("#s5 .m-pill", { opacity: 0, scale: 0.9, duration: 0.35, ease: "none" }, 19.85);
+      tl.fromTo("#s5 .m-heart", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.45, ease: E_OUT }, 19.9);
+      tl.fromTo("#s5 .word", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.7, ease: E_OUT }, 19.9);  // "CareBridge"
+      tl.fromTo("#s5 .tag", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: E_OUT }, 20.95);          // "From discharge to recovery"
+      tl.fromTo("#s5 .glow", { scale: 0.85, opacity: 0.6 }, { scale: 1.08, opacity: 1, duration: 5.2, ease: "sine.inOut" }, 19.7);
+      tl.to("#root", { opacity: 1, duration: 0.01 }, 24.99);  // hold to the end
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

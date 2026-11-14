@@ -1,0 +1,50 @@
+*** SYNTHETIC DOCUMENT — FOR TESTING ONLY — NOT A REAL PATIENT ***
+*** TEST CASE: conflicting instructions for the same drug → expect Needs Review ***
+
+PORUR LAKESIDE HOSPITAL
+157 Porur Main Road, Porur, Chennai · 044-41005000
+
+DISCHARGE SUMMARY
+
+Patient Name   : Selvi Kannan
+Patient ID     : P1006
+Age / Sex      : 71 / Female
+Date of Admission : 01-10-2026
+Date of Discharge : 07-10-2026
+Consultant     : Dr. Arun Prakash (General Medicine)
+
+Diagnosis:
+Upper gastrointestinal bleed (gastric ulcer). Hypertension. Old stroke (2023).
+
+Hospital Course:
+Admitted with black stools and giddiness. Hb 7.2 g/dL. Endoscopy showed gastric
+ulcer, treated. 2 units blood transfused. Hb 9.8 g/dL at discharge. Aspirin was
+held during admission.
+
+Discharge Medications:
+1. Tab. Pantoprazole 40 mg — twice daily before breakfast (7:00 AM) and before dinner (7:00 PM) for 8 weeks
+2. Tab. Amlodipine 5 mg — once daily at 8:00 AM
+3. Tab. Aspirin 75 mg — once daily after lunch at 1:00 PM. Continue as before.
+4. Tab. Ferrous sulphate 200 mg — once daily at 2:00 PM
+5. Tab. Amlodipine 10 mg — once daily at 9:00 PM
+
+Follow-up:
+- Hb (haemoglobin) after 2 weeks.
+- Review with Dr. Arun Prakash, General Medicine OPD, after 2 weeks.
+- Referral to Gastroenterology for repeat endoscopy after 8 weeks.
+
+Advice:
+- STOP Aspirin until reviewed by the gastroenterologist.
+- Soft, non-spicy diet. Avoid painkillers like Diclofenac or Ibuprofen.
+- Iron tablets may turn the stool black. This is expected.
+
+Warning Signs — Return to hospital immediately if:
+- Vomiting blood
+- Black, tarry stools increasing in amount
+- Giddiness or fainting
+- Severe stomach pain
+
+Emergency: 108 / Hospital Emergency 044-41005000
+
+Signed,
+Dr. Arun Prakash, MD (General Medicine)

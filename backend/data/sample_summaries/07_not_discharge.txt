@@ -1,0 +1,24 @@
+*** SYNTHETIC DOCUMENT — FOR TESTING ONLY ***
+*** TEST CASE: not a discharge summary → expect REJECT ("Document is not a discharge summary") ***
+
+GREEN LEAF PHARMACY
+22 Mylapore Tank Street, Mylapore, Chennai · 044-52001234
+
+TAX INVOICE
+
+Invoice No : GLP/2026/10/4471
+Date       : 09-10-2026
+Customer   : Murugan Selvam
+
+S.No  Item                      Qty   Rate      Amount
+1     Aspirin 75 mg (14 tabs)   2     12.50     25.00
+2     Atorvastatin 40 mg (10)   3     48.00    144.00
+3     Metoprolol 25 mg (10)     3     22.00     66.00
+4     Hand sanitizer 100 ml     1     55.00     55.00
+
+                              Sub total      290.00
+                              GST (12%)       34.80
+                              TOTAL          324.80
+
+Payment: UPI
+Thank you. Visit again.

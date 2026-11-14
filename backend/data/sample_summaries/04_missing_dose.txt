@@ -1,0 +1,47 @@
+*** SYNTHETIC DOCUMENT — FOR TESTING ONLY — NOT A REAL PATIENT ***
+*** TEST CASE: missing dose / missing frequency / missing date → expect Needs Review ***
+
+KAVERI ORCHID HOSPITAL
+130 Adyar Main Road, Adyar, Chennai · 044-41002000
+
+DISCHARGE SUMMARY
+
+Patient Name   : Anitha Rajan
+Patient ID     : P1004
+Age / Sex      : 39 / Female
+Date of Admission : 04-10-2026
+Date of Discharge : 08-10-2026
+Consultant     : Dr. Arun Prakash (General Medicine)
+
+Diagnosis:
+Community acquired pneumonia, right lower lobe.
+
+Hospital Course:
+Admitted with fever and cough for 5 days. Chest X-ray showed right lower lobe
+consolidation. Treated with IV antibiotics. Fever settled. Oxygen saturation
+normal on room air at discharge.
+
+Discharge Medications:
+1. Tab. Amoxicillin-Clavulanate 625 mg — twice daily at 8:00 AM and 8:00 PM for 5 days
+2. Tab. Montelukast — once daily at night
+3. Syp. Ascoril LS 10 ml — for cough
+4. Tab. Dolo 650 — at 8:00 AM, 2:00 PM, 9:00 PM
+
+Follow-up:
+- Repeat chest X-ray after 2 weeks.
+- Review in General Medicine OPD.
+
+Advice:
+- Steam inhalation twice a day.
+- Drink warm fluids.
+- Rest at home for 1 week.
+
+Warning Signs — Return to hospital immediately if:
+- Breathlessness or fast breathing
+- Fever returning after 3 days
+- Coughing blood
+
+Emergency: 108 / Hospital Emergency 044-41002000
+
+Signed,
+Dr. Arun Prakash, MD (General Medicine)

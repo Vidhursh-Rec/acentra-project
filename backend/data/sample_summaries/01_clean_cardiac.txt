@@ -1,0 +1,50 @@
+*** SYNTHETIC DOCUMENT — FOR TESTING ONLY — NOT A REAL PATIENT ***
+
+SUNDARA BAY MEDICAL CENTRE
+112 Anna Nagar Main Road, Anna Nagar, Chennai · 044-41000000
+
+DISCHARGE SUMMARY
+
+Patient Name   : Murugan Selvam
+Patient ID     : P1001
+Age / Sex      : 58 / Male
+Date of Admission : 02-10-2026
+Date of Discharge : 08-10-2026
+Consultant     : Dr. Lakshmi Narayanan (Cardiology)
+
+Diagnosis:
+Acute inferior wall myocardial infarction. Primary PCI done to RCA on 02-10-2026.
+
+Hospital Course:
+Patient presented with chest pain of 3 hours duration. ECG showed inferior wall
+STEMI. Underwent primary PCI with one drug-eluting stent to RCA. Post-procedure
+course was uneventful. Patient is haemodynamically stable at discharge.
+
+Discharge Medications:
+1. Tab. Aspirin 75 mg — once daily after lunch at 1:00 PM
+2. Tab. Clopidogrel 75 mg — once daily after breakfast at 8:00 AM
+3. Tab. Atorvastatin 40 mg — once daily at night at 9:00 PM
+4. Tab. Metoprolol 25 mg — twice daily at 8:00 AM and 8:00 PM
+5. Tab. Pantoprazole 40 mg — once daily before breakfast at 7:00 AM
+
+Follow-up:
+- Review with Dr. Lakshmi Narayanan, Cardiology OPD, after 2 weeks.
+- ECG and Echocardiogram to be done before the review visit.
+- Fasting lipid profile after 6 weeks.
+
+Advice:
+- Low salt, low fat diet. Avoid fried food.
+- Walk slowly for 10 minutes twice a day. Do not lift heavy weights for 4 weeks.
+- Keep the right wrist puncture site clean and dry for 5 days.
+- Do not stop Aspirin or Clopidogrel without asking your cardiologist.
+
+Warning Signs — Return to hospital immediately if:
+- Chest pain or tightness lasting more than 5 minutes
+- Breathlessness at rest
+- Fainting or giddiness
+- Bleeding or swelling at the wrist puncture site
+
+Emergency: 108 / Hospital Emergency 044-41000000
+
+Signed,
+Dr. Lakshmi Narayanan, MD, DM (Cardiology)

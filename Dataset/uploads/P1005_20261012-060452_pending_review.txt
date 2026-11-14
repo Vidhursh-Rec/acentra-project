@@ -1,0 +1,50 @@
+*** SYNTHETIC DOCUMENT — FOR TESTING ONLY — NOT A REAL PATIENT ***
+*** TEST CASE: vague instructions ("as needed", "adjust dose") → expect Needs Review ***
+
+SOUTHGATE MERIDIAN HOSPITAL
+148 Tambaram Main Road, Tambaram, Chennai · 044-41004000
+
+DISCHARGE SUMMARY
+
+Patient Name   : Sunil Verma
+Patient ID     : P1005
+Age / Sex      : 66 / Male
+Date of Admission : 03-10-2026
+Date of Discharge : 09-10-2026
+Consultant     : Dr. Lakshmi Narayanan (Cardiology)
+
+Diagnosis:
+Heart failure with reduced ejection fraction (EF 35%). Hypertension.
+
+Hospital Course:
+Admitted with breathlessness and leg swelling. Treated with IV diuretics.
+Weight reduced by 3 kg. Breathlessness improved. Stable at discharge.
+
+Discharge Medications:
+1. Tab. Furosemide 40 mg — once daily at 8:00 AM. Adjust dose based on weight.
+2. Tab. Ramipril 2.5 mg — once daily at 9:00 PM
+3. Tab. Carvedilol 3.125 mg — twice daily at 8:00 AM and 8:00 PM
+4. Tab. Spironolactone 25 mg — once daily at 1:00 PM
+5. Tab. Isosorbide dinitrate 5 mg — as needed for chest discomfort
+
+Follow-up:
+- Review in Cardiology OPD soon.
+- Serum electrolytes and creatinine after 1 week.
+- Echocardiogram after 3 months.
+
+Advice:
+- Weigh yourself every morning. Note the weight.
+- Limit fluid intake to 1.5 litres per day.
+- Low salt diet (less than 2 g salt per day).
+- Take extra Furosemide if needed.
+
+Warning Signs — Return to hospital immediately if:
+- Weight increases by more than 2 kg in 3 days
+- Breathlessness while lying flat
+- Increasing leg swelling
+- Chest pain
+
+Emergency: 108 / Hospital Emergency 044-41004000
+
+Signed,
+Dr. Lakshmi Narayanan, MD, DM (Cardiology)

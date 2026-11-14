@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary:   #0d1117;
+    --bg-card:      #161b22;
+    --bg-card2:     #1c2230;
+    --border:       #30363d;
+    --text-primary: #e6edf3;
+    --text-muted:   #8b949e;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); }
+  ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+}
+
+@layer components {
+  /* Cards */
+  .card {
+    @apply rounded-xl border border-[#30363d] bg-[#161b22] p-5 shadow-lg;
+  }
+  .card2 {
+    @apply rounded-xl border border-[#30363d] bg-[#1c2230] p-4;
+  }
+
+  /* Risk badges */
+  .badge-HIGH   { @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-900/40 text-red-400 border border-red-800; }
+  .badge-MEDIUM { @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-yellow-900/40 text-yellow-400 border border-yellow-800; }
+  .badge-LOW    { @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-900/40 text-blue-400 border border-blue-800; }
+  .badge-NONE   { @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-gray-800 text-gray-400 border border-gray-700; }
+
+  /* Status badges */
+  .status-PENDING         { @apply inline-flex px-2 py-0.5 rounded text-xs font-medium bg-yellow-900/30 text-yellow-300; }
+  .status-CONFIRMED_FRAUD { @apply inline-flex px-2 py-0.5 rounded text-xs font-medium bg-red-900/40 text-red-300; }
+  .status-CLEARED         { @apply inline-flex px-2 py-0.5 rounded text-xs font-medium bg-green-900/30 text-green-300; }
+  .status-ESCALATED       { @apply inline-flex px-2 py-0.5 rounded text-xs font-medium bg-purple-900/30 text-purple-300; }
+
+  /* Buttons */
+  .btn-primary { @apply px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all duration-150 active:scale-95; }
+  .btn-danger  { @apply px-4 py-2 rounded-lg bg-red-700 hover:bg-red-800 text-white text-sm font-semibold transition-all duration-150 active:scale-95; }
+  .btn-success { @apply px-4 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold transition-all duration-150 active:scale-95; }
+  .btn-warn    { @apply px-4 py-2 rounded-lg bg-amber-700 hover:bg-amber-800 text-white text-sm font-semibold transition-all duration-150 active:scale-95; }
+  .btn-ghost   { @apply px-4 py-2 rounded-lg border border-[#30363d] text-[#8b949e] hover:text-white hover:border-[#8b949e] text-sm font-medium transition-all duration-150; }
+
+  /* Input */
+  .input { @apply w-full bg-[#0d1117] border border-[#30363d] rounded-lg px-3 py-2 text-sm text-[#e6edf3] placeholder-[#8b949e] focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/50 transition-colors; }
+
+  /* Sidebar nav link */
+  .nav-link { @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-[#8b949e] hover:bg-[#161b22] hover:text-white transition-all duration-150; }
+  .nav-link.active { @apply bg-brand-600/10 text-brand-500 border border-brand-600/30; }
+}
+
+/* Leaflet overrides */
+.leaflet-container { background: #0d1117 !important; border-radius: 12px; }
+.leaflet-tile { filter: brightness(0.7) saturate(0.6); }
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(79,110,247,.4); }
+  50%        { box-shadow: 0 0 0 8px rgba(79,110,247,0); }
+}
+.animate-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.animate-fadeIn { animation: fadeIn .25s ease forwards; }

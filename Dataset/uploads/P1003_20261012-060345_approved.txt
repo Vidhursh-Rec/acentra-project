@@ -1,0 +1,51 @@
+*** SYNTHETIC DOCUMENT — FOR TESTING ONLY — NOT A REAL PATIENT ***
+
+MARINA CREST MULTISPECIALITY HOSPITAL
+121 T. Nagar Main Road, T. Nagar, Chennai · 044-41001000
+
+DISCHARGE SUMMARY
+
+Patient Name   : Rakesh Sharma
+Patient ID     : P1003
+Age / Sex      : 45 / Male
+Date of Admission : 06-10-2026
+Date of Discharge : 10-10-2026
+Consultant     : Dr. Vignesh Ramasamy (Orthopedics)
+
+Diagnosis:
+Closed fracture of right distal radius. Open reduction and internal fixation (ORIF)
+with plate done on 07-10-2026.
+
+Hospital Course:
+Patient sustained fall from two-wheeler. X-ray showed right distal radius fracture.
+ORIF done under regional block. Post-op X-ray satisfactory. Wound healthy.
+
+Discharge Medications:
+1. Tab. Dolo 650 — three times daily at 8:00 AM, 2:00 PM and 9:00 PM for 5 days
+2. Tab. Cefuroxime 500 mg — twice daily at 8:00 AM and 8:00 PM for 5 days
+3. Tab. Pantoprazole 40 mg — once daily before breakfast at 7:00 AM for 5 days
+4. Tab. Calcium + Vitamin D3 (Shelcal 500) — once daily after lunch at 1:30 PM for 3 months
+
+Follow-up:
+- Suture removal and wound check after 12 days.
+- X-ray right wrist (AP and lateral) after 4 weeks.
+- Follow-up with Dr. Nila Aravind, Orthopedics, 101 T. Nagar Main Road, T. Nagar
+  after 4 weeks with X-ray.
+- Referral to physiotherapy after suture removal for wrist mobilisation.
+
+Advice:
+- Keep the dressing clean and dry. Do not wet the hand.
+- Keep the arm elevated on a pillow while resting.
+- Move fingers gently every hour.
+- Do not lift any weight with the right hand for 6 weeks.
+
+Warning Signs — Return to hospital immediately if:
+- Severe pain not relieved by medicines
+- Fingers turning blue, cold or numb
+- Pus or foul smell from the wound
+- Fever above 100°F
+
+Emergency: 108 / Hospital Emergency 044-41001000
+
+Signed,
+Dr. Vignesh Ramasamy, MS (Ortho)

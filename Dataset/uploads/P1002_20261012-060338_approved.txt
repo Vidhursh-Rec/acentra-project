@@ -1,0 +1,48 @@
+*** SYNTHETIC DOCUMENT — FOR TESTING ONLY — NOT A REAL PATIENT ***
+
+VELAN GROVE HOSPITAL
+139 Velachery Main Road, Velachery, Chennai · 044-41003000
+
+DISCHARGE SUMMARY
+
+Patient Name   : Kamala Devi
+Patient ID     : P1002
+Age / Sex      : 63 / Female
+Date of Admission : 05-10-2026
+Date of Discharge : 09-10-2026
+Consultant     : Dr. Farida Begum (Endocrinology)
+
+Diagnosis:
+Type 2 Diabetes Mellitus with uncontrolled blood sugar. Urinary tract infection.
+
+Hospital Course:
+Admitted with high blood sugar (RBS 412 mg/dL) and burning micturition. Treated with
+IV antibiotics and insulin. Sugars controlled. Shifted to oral medicines. Urine
+culture sensitive to Nitrofurantoin. Patient stable at discharge.
+
+Discharge Medications:
+1. Tab. Metformin 500 mg — twice daily after breakfast (8:30 AM) and after dinner (8:30 PM)
+2. Tab. Glimepiride 1 mg — once daily before breakfast at 7:30 AM
+3. Cap. Nitrofurantoin 100 mg — twice daily at 8:00 AM and 8:00 PM for 5 days
+4. Tab. Dolo 650 — once daily at 2:00 PM for 3 days
+
+Follow-up:
+- Fasting and post-prandial blood sugar (FBS, PPBS) after 1 week at any lab.
+- HbA1c after 3 months.
+- Review with Dr. Farida Begum, Endocrinology OPD, on 23-10-2026.
+
+Advice:
+- Diabetic diet. Avoid sweets, sugar, and fruit juices.
+- Drink 2 to 3 litres of water per day.
+- Check feet daily for cuts or wounds.
+
+Warning Signs — Return to hospital immediately if:
+- Sugar below 70 mg/dL with sweating, shivering or confusion
+- Fever with chills
+- Vomiting and unable to eat
+- Drowsiness or unusual behaviour
+
+Emergency: 108 / Hospital Emergency 044-41003000
+
+Signed,
+Dr. Farida Begum, MD, DM (Endocrinology)
