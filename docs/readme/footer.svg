@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="170" viewBox="0 0 1280 170" role="img" aria-label="Built by Vidhursh Kumar after the Acentra hackathon, October 2026">
+  <defs>
+    <pattern id="paper" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#e3e5e0" stroke-width="1"/>
+    </pattern>
+    <style>.t { font-family: "Inter", "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif; }</style>
+  </defs>
+  <rect width="1280" height="170" rx="28" fill="#f7f7f3"/>
+  <rect width="1280" height="170" rx="28" fill="url(#paper)"/>
+  <rect x="1.5" y="1.5" width="1277" height="167" rx="27" fill="none" stroke="#15803d" stroke-width="3" stroke-dasharray="10 8"/>
+
+  <g transform="translate(56 49) scale(3)" fill="none" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/>
+  </g>
+  <text class="t" x="150" y="78" font-size="30" font-weight="800" fill="#111827" letter-spacing="-0.5">Built by Vidhursh Kumar</text>
+  <text class="t" x="150" y="114" font-size="19" fill="#4b5563">Acentra hackathon, Oct 2026: 1st of 30, then 2nd. One month of Claude Code later, the demo exists.</text>
+
+  <g transform="translate(1010 62)">
+    <rect width="214" height="46" rx="23" fill="#16a34a"/>
+    <text class="t" x="107" y="30" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">The demo's ready 😉</text>
+  </g>
+</svg>
